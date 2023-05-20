@@ -1,7 +1,5 @@
-import './globals.css'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import NavbarComponent from '@/components/NavbarComponent'
+import CustomUiWrapper from '@/components/CustomUiWrapper'
 
 export const metadata = {
   title: 'Board Gamezz',
@@ -15,7 +13,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body>
+        <CustomUiWrapper>
+          <NavbarComponent />
+          {children}
+        </CustomUiWrapper>
+      </body>
     </html>
   )
 }
