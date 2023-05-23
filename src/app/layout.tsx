@@ -1,5 +1,5 @@
-import NavbarComponent from '@/components/NavbarComponent'
 import CustomUiWrapper from '@/components/CustomUiWrapper'
+import NavbarComponent from '@/components/NavbarComponent'
 
 export const metadata = {
   title: 'Board Gamezz',
@@ -16,6 +16,7 @@ export default function RootLayout({
       <body>
         <CustomUiWrapper>
           <NavbarComponent />
+
           {children}
         </CustomUiWrapper>
       </body>
