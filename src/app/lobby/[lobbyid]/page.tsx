@@ -1,8 +1,13 @@
 'use client';
 
 import { Center, VStack, Button, HStack, Text, Heading } from "@chakra-ui/react";
+const { io } = require("socket.io-client");
 
 export default function InLobbyPage() {
+    var socket = io('http://localhost:3187');
+    socket.on('hello', (res: any) => {
+        console.log(res)
+    });
     console.log("doing backend calls..")
     console.log("connecting with socket..")
     console.log("get response obj from socket/route.. Went everything right/successful? Who is in the lobby? Am i(my session id) the admin?")
