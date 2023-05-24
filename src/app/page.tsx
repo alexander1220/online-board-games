@@ -2,6 +2,6 @@
 
 export default function Home() {
   return (<>
-    display games
+    display games? (remove "games" page)
   </>)
 }

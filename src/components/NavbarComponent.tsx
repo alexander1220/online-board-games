@@ -53,13 +53,16 @@ export default function NavbarComponent() {
                     />
                 </Flex>
                 <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-                    <Text
+                    <Link
+                        href='/'
                         textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
                         fontFamily={'heading'}
-                        color={useColorModeValue('gray.800', 'white')}>
+                        color={useColorModeValue('gray.800', 'white')}
+                        _hover={{
+                            textDecoration: 'none',
+                        }}>
                         BoardGamez
-                    </Text>
-
+                    </Link>
                     <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
                         <DesktopNav />
                     </Flex>
@@ -84,10 +87,10 @@ export default function NavbarComponent() {
                         fontSize={'sm'}
                         fontWeight={600}
                         color={'white'}
-                        bg={'pink.400'}
+                        bg={'blue.400'}
                         href={'#'}
                         _hover={{
-                            bg: 'pink.300',
+                            bg: 'blue.300',
                         }}>
                         Sign Up
                     </Button>
@@ -256,8 +259,5 @@ const NAV_ITEMS: Array<NavItem> = [
     {
         label: 'Games',
         href: '/games'
-    },
-    {
-        label: 'Find Work'
     }
 ];

@@ -1,22 +1,26 @@
 'use client';
 
-import { SimpleGrid, Box, VStack, Heading, Text, LinkBox, LinkOverlay } from '@chakra-ui/react';
+import { SimpleGrid, Center, Box, VStack, Heading, Text, LinkBox, LinkOverlay } from '@chakra-ui/react';
 
 export default function GamesPage() {
     return (
-        <SimpleGrid columns={3} spacing={5}>
-            {tempGames.map((game) => (
-                <LinkBox>
-                    <LinkOverlay href={"/games/" + game.handle}>
-                        <VStack align={'left'} borderRadius={'lg'} borderWidth={1} borderColor={'white'} padding={5}>
-                            <Box backgroundColor={'green.400'} height={'180px'} width={'100%'} borderRadius={'sm'}>image</Box>
-                            <Heading size={'sm'}>{game.name}</Heading>
-                            <Text>{game.minidesc}</Text>
-                        </VStack>
-                    </LinkOverlay>
-                </LinkBox>
-            ))}
-        </SimpleGrid>
+        <Center>
+            <SimpleGrid columns={{ base: 1, md: 3 }} spacing={5} p={10}>
+                {tempGames.map((game) => (
+                    <LinkBox>
+                        <LinkOverlay href={"/games/" + game.handle}>
+                            <VStack align={'left'} borderRadius={'lg'} borderWidth={1} borderColor={'white'} padding={0} width={{ base: '200px', lg: '320px' }}>
+                                <Box backgroundColor={'blue.700'} height={'240px'} width={'100%'} borderRadius={'lg'}>preview image</Box>
+                                <VStack p={2} paddingTop={1} align={'left'}>
+                                    <Heading size={'sm'}>{game.name}</Heading>
+                                    <Text>{game.minidesc}</Text>
+                                </VStack>
+                            </VStack>
+                        </LinkOverlay>
+                    </LinkBox>
+                ))}
+            </SimpleGrid>
+        </Center>
     )
 }
 
