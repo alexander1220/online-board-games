@@ -4,7 +4,7 @@ import { Center, VStack, Button, HStack, Text, Heading } from "@chakra-ui/react"
 const { io } = require("socket.io-client");
 
 export default function InLobbyPage() {
-    var socket = io('http://localhost:3187');
+    var socket = io('https://board-game-backend.vercel.app:5000');
     socket.on('hello', (res: any) => {
         console.log(res)
     });

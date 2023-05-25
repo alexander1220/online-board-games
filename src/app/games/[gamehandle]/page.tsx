@@ -5,11 +5,15 @@ const apiRoute = "https://board-game-backend.vercel.app";
 
 export default function SingleGamePage() {
     function createLobby() {
-        fetch(apiRoute + "/lobbycreate").then((res: any) => {
+        fetch(apiRoute + "/lobbycreate", {
+            method: 'GET',
+            mode: 'cors',
+            headers: { 'content-type': 'application/json' }
+        }).then((res: any) => {
             //TODO: Error handling
             console.log(res)
             var id = res.body['lobbyId'];
-            location.href = location.origin + "/lobby/" + id;
+            // location.href = location.origin + "/lobby/" + id;
         });
     }
     return (
