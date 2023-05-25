@@ -1,11 +1,16 @@
 'use client';
 
 import { Center, HStack, Container, VStack, Box, Heading, Text, Button, SimpleGrid } from "@chakra-ui/react";
+const apiRoute = "https://board-game-backend.vercel.app";
 
 export default function SingleGamePage() {
     function createLobby() {
-        var id = "123"//call backend, then:
-        location.href = location.origin + "/lobby/" + id;
+        fetch(apiRoute + "/lobbycreate").then((res: any) => {
+            //TODO: Error handling
+            console.log(res)
+            var id = res.body['lobbyId'];
+            location.href = location.origin + "/lobby/" + id;
+        });
     }
     return (
         <Center mt={'50px'}>
