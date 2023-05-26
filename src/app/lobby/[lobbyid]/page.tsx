@@ -1,27 +1,38 @@
 'use client';
 
 import { Center, VStack, Button, HStack, Text, Heading } from "@chakra-ui/react";
+import { useState } from 'react';
 const { io } = require("socket.io-client");
 
 export default function InLobbyPage() {
+    const [users, setUsers] = useState<string[]>([]);
+    // var socket = io('http://localhost:5000/');
     var socket = io('https://board-game-backend.vercel.app:5000');
+
+    socket.on('user connected', (user: string) => {
+        console.log("user '" + user + "' connected")
+        setUsers(prevUsers => [
+            ...prevUsers,
+            user,
+        ]);
+
+        console.log(users);
+    });
+
     socket.on('hello', (res: any) => {
+        socket.emit('lobbychange', { lobbyname: "The boss hoss" })
         console.log(res)
     });
-    console.log("doing backend calls..")
-    console.log("connecting with socket..")
-    console.log("get response obj from socket/route.. Went everything right/successful? Who is in the lobby? Am i(my session id) the admin?")
+
     return (
         <Center mt={'50px'}>
             <VStack spacing={5} align={'left'}>
                 <Heading>ONO</Heading>
                 {/*player list: */}
                 <VStack align={'left'}>
-                    <Text>Player1</Text>
-                    <Text>Player2</Text>
-                    <Text>Player3</Text>
-                    <Text>Player4</Text>
-                    <Text>Player5</Text>
+                    {users.map((user: string, index) => {
+                        return (<Text key={index}>{user}</Text>)
+                    })}
                 </VStack>
                 <HStack>
                     <Button>Start Game</Button>

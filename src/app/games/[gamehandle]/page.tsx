@@ -11,9 +11,9 @@ export default function SingleGamePage() {
             headers: { 'content-type': 'application/json' }
         }).then((res: any) => {
             //TODO: Error handling
-            console.log(res)
-            var id = res.body['lobbyId'];
-            // location.href = location.origin + "/lobby/" + id;
+            res.json().then((result: any) => {
+                location.href = location.origin + "/lobby/" + result;
+            })
         });
     }
     return (
