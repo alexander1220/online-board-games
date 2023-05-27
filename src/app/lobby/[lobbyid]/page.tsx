@@ -3,19 +3,27 @@
 import { Center, VStack, Button, HStack, Text, Heading } from "@chakra-ui/react";
 import { useState } from 'react';
 const { io } = require("socket.io-client");
+const userId = Math.floor(Math.random() * 9000) + 1000;
+console.log(userId);
+const socket = io("https://board-game-backend.vercel.app:5000", {
+    // const socket = io("http://localhost:5000", {
+    withCredentials: true,
+    extraHeaders: {
+        "Content-Type": "text/html"
+    }
+});
 
-export default function InLobbyPage() {
+export default function InLobbyPage(/* get lobby id */) {
     const [users, setUsers] = useState<string[]>([]);
-    // var socket = io('http://localhost:5000/');
-    var socket = io('https://board-game-backend.vercel.app:5000');
 
-    socket.on('user connected', (user: string) => {
+    socket.once('user connected', (user: string) => {
         console.log("user '" + user + "' connected")
         setUsers(prevUsers => [
             ...prevUsers,
             user,
         ]);
     });
+    socket.emit("lobby join", userId); // pass lobby id
 
     return (
         <Center mt={'50px'}>
