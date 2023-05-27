@@ -15,13 +15,6 @@ export default function InLobbyPage() {
             ...prevUsers,
             user,
         ]);
-
-        console.log(users);
-    });
-
-    socket.on('hello', (res: any) => {
-        socket.emit('lobbychange', { lobbyname: "The boss hoss" })
-        console.log(res)
     });
 
     return (
