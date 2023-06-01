@@ -1,5 +1,6 @@
 'use client';
 
+import UnoCardGamePage from "@/components/UnoCardGame";
 import { Center, VStack, Button, HStack, Text, Heading } from "@chakra-ui/react";
 import { useState } from 'react';
 const { io } = require("socket.io-client");
@@ -15,7 +16,6 @@ const socket = io("https://board-game-backend.vercel.app:5000", {
 
 export default function InLobbyPage(/* get lobby id */) {
     const [users, setUsers] = useState<string[]>([]);
-
     socket.once('user connected', (user: string) => {
         console.log("user '" + user + "' connected")
         setUsers(prevUsers => [
@@ -24,7 +24,8 @@ export default function InLobbyPage(/* get lobby id */) {
         ]);
     });
     socket.emit("lobby join", userId); // pass lobby id
-
+    //socket emit ("gamechange", { lobbyid:"mylobbyid", action:"orange 3"})
+    //socket on ("played", () => play orange 3)
     return (
         <Center mt={'50px'}>
             <VStack spacing={5} align={'left'}>
